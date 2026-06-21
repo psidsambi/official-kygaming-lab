@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开元棋牌 · 简明导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fa;
+            color: #1e2a3a;
+            line-height: 1.6;
+        }
+
+        /* 深色头图 / 导航区 */
+        .top-bar {
+            background: #0b1424;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            color: #d9e0ef;
+            border-bottom: 1px solid #29344a;
+        }
+
+        .logo-area {
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #f0f4ff;
+        }
+
+        .logo-area span {
+            color: #f0b45a;
+            margin-right: 6px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: #b8c6e0;
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 450;
+        }
+
+        .nav-links a:hover {
+            color: #f0b45a;
+        }
+
+        /* 深色 hero 区 */
+        .hero-dark {
+            background: linear-gradient(135deg, #0f1a2e 0%, #1b2942 100%);
+            padding: 5rem 6% 4.5rem;
+            text-align: center;
+            color: #e6edfa;
+        }
+
+        .hero-dark h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-dark h1 sup {
+            font-size: 1rem;
+            background: #f0b45a;
+            color: #0b1424;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            margin-left: 12px;
+            font-weight: 500;
+        }
+
+        .hero-dark p {
+            max-width: 720px;
+            margin: 1rem auto 2rem;
+            color: #b6c7e5;
+            font-size: 1.05rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            border: 1px solid #f0b45a;
+            color: #f0b45a;
+            background: transparent;
+            padding: 0.55rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .btn-outline:hover {
+            background: #f0b45a;
+            color: #0b1424;
+        }
+
+        .btn-ghost {
+            color: #b6c7e5;
+            text-decoration: none;
+            border-bottom: 1px dotted #4a5a7a;
+            padding-bottom: 2px;
+            font-size: 0.95rem;
+        }
+
+        .btn-ghost:hover {
+            color: #f0b45a;
+            border-bottom-color: #f0b45a;
+        }
+
+        /* 浅色正文区 */
+        .content-container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 3.5rem 5% 4rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #132030;
+            border-left: 5px solid #f0b45a;
+            padding-left: 1rem;
+        }
+
+        .section-sub {
+            color: #3f4d63;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+
+        /* 三个场景卡片 */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2.5rem 0 3rem;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 18px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 8px 24px rgba(13, 22, 40, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e9edf4;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(11, 20, 36, 0.08);
+        }
+
+        .scenario-card .emoji-badge {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        .scenario-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #132030;
+        }
+
+        .scenario-card p {
+            font-size: 0.95rem;
+            color: #3f4d63;
+        }
+
+        .scenario-card .tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            background: #edf2f9;
+            color: #1e3a5f;
+            padding: 0.15rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 常见说明 / 提示折页 */
+        .faq-notes {
+            margin: 3rem 0 2rem;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #e3e9f2;
+        }
+
+        .faq-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eef2f8;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            min-width: 100px;
+            color: #132030;
+        }
+
+        .faq-item .a {
+            color: #3f4d63;
+            font-size: 0.95rem;
+        }
+
+        .faq-item .a a {
+            color: #d28b2e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+
+        .faq-item .a a:hover {
+            color: #b06d1a;
+        }
+
+        .reminder-box {
+            background: #f9f7f3;
+            border-left: 4px solid #f0b45a;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            margin: 2rem 0 1rem;
+            font-size: 0.95rem;
+            color: #2f3e55;
+        }
+
+        .reminder-box strong {
+            color: #132030;
+        }
+
+        /* 页脚 */
+        .footer-note {
+            text-align: center;
+            padding: 2rem 5%;
+            color: #66758b;
+            font-size: 0.85rem;
+            border-top: 1px solid #e0e6ef;
+            margin-top: 1rem;
+            background: #fafcff;
+        }
+
+        /* 响应式 */
+        @media (max-width: 900px) {
+            .scenario-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .top-bar {
+                flex-direction: column;
+                height: auto;
+                padding: 0.8rem 5%;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-dark h1 {
+                font-size: 2rem;
+            }
+            .scenario-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .faq-notes {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+            .faq-item .q {
+                min-width: auto;
+            }
+            .reminder-box {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-dark {
+                padding: 3rem 5% 2.8rem;
+            }
+            .hero-dark h1 {
+                font-size: 1.8rem;
+            }
+            .btn-outline {
+                padding: 0.4rem 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航（深色） -->
+    <header class="top-bar">
+        <div class="logo-area"><span>◇</span> 开元指引</div>
+        <ul class="nav-links">
+            <li><a href="#overview">概览</a></li>
+            <li><a href="#scenarios">场景</a></li>
+            <li><a href="#notes">说明</a></li>
+        </ul>
+    </header>
+
+    <!-- hero 深色头图 -->
+    <section class="hero-dark">
+        <h1>简明访问指南 <sup>· 2025</sup></h1>
+        <p>
+            围绕「<a href="https://official-kygaming.com" style="color:#f0b45a; text-decoration:underline; text-underline-offset:4px; font-weight:500;">开元棋牌</a>」平台特性整理的轻量导航，涵盖核心功能、典型使用场景与常见注意事项。
+        </p>
+        <div class="hero-actions">
+            <a href="#scenarios" class="btn-outline">了解场景</a>
+            <a href="#notes" class="btn-ghost">常见说明 ↘</a>
+        </div>
+    </section>
+
+    <!-- 浅色内容区 -->
+    <div class="content-container">
+
+        <!-- 核心介绍（概览） -->
+        <section id="overview">
+            <h2 class="section-title">平台定位与简要特点</h2>
+            <p class="section-sub">
+                开元棋牌作为线上棋牌娱乐服务之一，面向习惯数字环境的用户，提供多品类棋牌对局与实时互动。整体界面以信息层级清晰、响应快速为设计重点，兼顾不同终端的操作习惯。
+            </p>
+            <div style="display:flex; flex-wrap:wrap; gap:1rem 2rem; margin:1.2rem 0 0.2rem; background:#f3f6fc; padding:1.2rem 1.8rem; border-radius:16px;">
+                <span style="font-weight:500;">▸ 多游戏类型</span>
+                <span style="font-weight:500;">▸ 实时对局匹配</span>
+                <span style="font-weight:500;">▸ 数据统计看板</span>
+                <span style="font-weight:500;">▸ 跨设备同步</span>
+            </div>
+        </section>
+
+        <!-- 三个场景模块 -->
+        <section id="scenarios" style="margin-top:3rem;">
+            <h2 class="section-title">典型使用场景</h2>
+            <p class="section-sub">以下三种情境覆盖多数用户接触<a href="https://official-kygaming.com" style="color:#d28b2e; font-weight:500;">开元棋牌</a>的主要方式。</p>
+
+            <div class="scenario-grid">
+                <div class="scenario-card">
+                    <span class="emoji-badge">🎲</span>
+                    <h3>快速对局 · 碎片时间</h3>
+                    <p>通过移动端或桌面浏览器直接进入牌桌，无需下载额外客户端。适合通勤、等候等短时场景，单局节奏可控。</p>
+                    <span class="tag">即时匹配</span>
+                </div>
+                <div class="scenario-card">
+                    <span class="emoji-badge">📊</span>
+                    <h3>策略复盘 · 数据参考</h3>
+                    <p>平台提供近期对局记录与基础统计字段，帮助用户回顾决策线路。适合希望提升个人判断的长期参与者。</p>
+                    <span class="tag">历史统计</span>
+                </div>
+                <div class="scenario-card">
+                    <span class="emoji-badge">🖥️</span>
+                    <h3>多桌浏览 · 信息监控</h3>
+                    <p>在大屏设备上可同时关注多桌动态，利用列表或缩略视图快速切换。适合管理多个对局或观察趋势。</p>
+                    <span class="tag">多窗口布局</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见说明 / FAQ 摘要 + 提示 -->
+        <section id="notes">
+            <h2 class="section-title">常见说明与访问提醒</h2>
+
+            <div class="faq-notes">
+                <div class="faq-item">
+                    <div class="q">访问环境</div>
+                    <div class="a">建议使用主流浏览器（Chrome / Edge / Safari 最新版本），并保持网络稳定。部分功能依赖 WebSocket 长连接，弱网环境下可能延迟。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">账户关联</div>
+                    <div class="a">同一账户可在多设备登录，但同一时间仅允许一个活跃对局会话。建议不要共享账户凭证，以保障数据安全。详情可参考 <a href="https://official-kygaming.com">开元棋牌</a> 内的安全说明。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">游戏状态</div>
+                    <div class="a">对局结果依据服务器记录为准，本地显示仅作参考。如遇显示异常，可尝试刷新或间隔一段时间后重新拉取。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">更新与维护</div>
+                    <div class="a">平台会不定期进行功能更新或系统维护，通常提前通过站内信或页面公告告知。维护期间部分服务可能临时不可用。</div>
+                </div>
+            </div>
+
+            <div class="reminder-box">
+                <strong>📌 简明提醒：</strong>
+                使用任何线上棋牌服务时，请合理规划时间与投入。了解规则、控制节奏、保持理性判断。本页仅作信息展示，不构成任何建议或承诺。
+            </div>
+        </section>
+
+        <!-- 额外一句话链接（自然嵌入） -->
+        <p style="margin: 2.5rem 0 0.5rem; font-size:0.95rem; color:#3f4d63;">
+            若希望直接了解最新游戏列表与大厅动态，可前往 <a href="https://official-kygaming.com" style="color:#d28b2e; font-weight:500;">开元棋牌</a> 查看实时信息。不同地区可能遇到网络差异，可尝试切换基础网络环境。
+        </p>
+
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer-note">
+        <span>信息页 · 仅作导航参考 · 具体以官方实时界面为准</span>
+    </footer>
+
+</body>
+</html>
